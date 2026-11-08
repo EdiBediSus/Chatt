@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#101522">
+  <title>EdChat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="authScreen" class="screen">
+    <div class="auth-card">
+      <div class="logo">E</div>
+      <h1>EdChat</h1>
+      <p class="muted">Chat with your people.</p>
+
+      <input id="username" placeholder="Username (registration)">
+      <input id="email" type="email" placeholder="Email">
+      <input id="password" type="password" placeholder="Password">
+
+      <button id="registerBtn">Create account</button>
+      <button id="loginBtn" class="secondary">Login</button>
+      <p id="authStatus" class="status"></p>
+    </div>
+  </div>
+
+  <div id="appScreen" class="app-screen" hidden>
+    <header>
+      <div class="brand">
+        <div class="small-logo">E</div>
+        <div>
+          <h2>EdChat</h2>
+          <small>Global community</small>
+        </div>
+      </div>
+      <button id="logoutBtn" class="logout">Logout</button>
+    </header>
+
+    <main id="messages"></main>
+
+    <div id="drawingPanel" hidden>
+      <div class="drawing-header">
+        <strong>Draw something 🎨</strong>
+        <button id="closeDrawing" class="secondary">✕</button>
+      </div>
+      <canvas id="drawingCanvas" width="600" height="400"></canvas>
+      <div class="drawing-tools">
+        <input id="drawColor" type="color" value="#6578ff">
+        <input id="drawSize" type="range" min="2" max="25" value="6">
+        <button id="clearDrawing" class="secondary">Clear</button>
+        <button id="sendDrawing">Send drawing</button>
+      </div>
+    </div>
+
+    <form id="messageForm">
+      <button type="button" id="drawBtn" class="tool-btn">🎨</button>
+      <input id="messageInput" placeholder="Write a message..." maxlength="2000" autocomplete="off">
+      <button type="submit" id="sendBtn">➤</button>
+    </form>
+    <div class="footer">EdChat · Made for conversations</div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
