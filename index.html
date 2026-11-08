@@ -1,67 +1,84 @@
-
 <!DOCTYPE html>
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#101522">
   <title>EdChat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div id="authScreen" class="screen">
     <div class="auth-card">
       <div class="logo">E</div>
-      <h1>EdChat</h1>
-      <p class="muted">Chat with your people.</p>
-
-      <input id="username" placeholder="Username (registration)">
-      <input id="email" type="email" placeholder="Email">
-      <input id="password" type="password" placeholder="Password">
-
+      <p class="eyebrow">YOUR SPACE TO TALK</p>
+      <h1>Welcome to <span>EdChat</span></h1>
+      <p class="muted">A little place for your people.</p>
+      <input id="username" placeholder="Username (registration)" autocomplete="username">
+      <input id="email" type="email" placeholder="Email" autocomplete="email">
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password">
       <button id="registerBtn">Create account</button>
-      <button id="loginBtn" class="secondary">Login</button>
-      <p id="authStatus" class="status"></p>
+      <button id="loginBtn" class="secondary">I already have an account · Log in</button>
+      <p id="authStatus" class="status" role="status"></p>
     </div>
+    <div class="auth-footer">EdChat · Made for conversations</div>
   </div>
 
   <div id="appScreen" class="app-screen" hidden>
     <header>
       <div class="brand">
         <div class="small-logo">E</div>
-        <div>
-          <h2>EdChat</h2>
-          <small>Global community</small>
-        </div>
+        <div><h2>EdChat</h2><small><span class="online-dot"></span> Global community</small></div>
       </div>
-      <button id="logoutBtn" class="logout">Logout</button>
+      <button id="logoutBtn" class="logout">Log out ↗</button>
     </header>
 
-    <main id="messages"></main>
+    <section class="chat-title">
+      <div><p class="eyebrow">THE COMMON ROOM</p><h1>Global chat <span class="live-tag">LIVE</span></h1><p class="muted">Say something nice. Or weird. Your call.</p></div>
+      <div class="title-mark">✳</div>
+    </section>
 
-    <div id="drawingPanel" hidden>
+    <main id="messages" aria-live="polite">
+      <div class="empty-state"><span>✦</span><strong>It's quiet in here</strong><small>Start the conversation.</small></div>
+    </main>
+
+    <section id="drawingPanel" hidden>
       <div class="drawing-header">
-        <strong>Draw something 🎨</strong>
-        <button id="closeDrawing" class="secondary">✕</button>
+        <div><strong>Drawing studio</strong><small>Make something and share it</small></div>
+        <button id="closeDrawing" class="close-btn" type="button">×</button>
       </div>
-      <canvas id="drawingCanvas" width="600" height="400"></canvas>
+      <canvas id="drawingCanvas" width="900" height="520"></canvas>
       <div class="drawing-tools">
-        <input id="drawColor" type="color" value="#6578ff">
-        <input id="drawSize" type="range" min="2" max="25" value="6">
-        <button id="clearDrawing" class="secondary">Clear</button>
-        <button id="sendDrawing">Send drawing</button>
+        <label>Ink <input id="drawColor" type="color" value="#6578ff"></label>
+        <label class="brush-label">Brush <input id="drawSize" type="range" min="2" max="28" value="7"></label>
+        <button id="clearDrawing" class="secondary" type="button">Clear</button>
+        <button id="sendDrawing" type="button">Send drawing ↗</button>
       </div>
-    </div>
+    </section>
 
-    <form id="messageForm">
-      <button type="button" id="drawBtn" class="tool-btn">🎨</button>
-      <input id="messageInput" placeholder="Write a message..." maxlength="2000" autocomplete="off">
-      <button type="submit" id="sendBtn">➤</button>
-    </form>
-    <div class="footer">EdChat · Made for conversations</div>
+    <section class="composer-area">
+      <div id="bubblePicker" class="bubble-picker" hidden>
+        <strong>Choose a bubble style</strong>
+        <div class="bubble-options">
+          <button type="button" class="bubble-choice bubble-sun" data-bubble="bubble-sun">☀️ Sunny</button>
+          <button type="button" class="bubble-choice bubble-love" data-bubble="bubble-love">💗 Love</button>
+          <button type="button" class="bubble-choice bubble-mint" data-bubble="bubble-mint">🌿 Fresh</button>
+          <button type="button" class="bubble-choice bubble-night" data-bubble="bubble-night">🌙 Chill</button>
+        </div>
+        <small>Write your message first, then choose a style.</small>
+      </div>
+      <form id="messageForm">
+        <button type="button" id="drawBtn" class="tool-btn" title="Draw" aria-label="Draw">✎</button>
+        <button type="button" id="bubbleBtn" class="tool-btn" title="Bubble styles" aria-label="Bubble styles">◉</button>
+        <input id="messageInput" placeholder="Write a message..." maxlength="2000" autocomplete="off">
+        <button type="submit" id="sendBtn" aria-label="Send">↑</button>
+      </form>
+      <div class="composer-note">Enter to send <span>·</span> Be kind out there</div>
+    </section>
   </div>
-
   <script type="module" src="app.js"></script>
 </body>
 </html>
